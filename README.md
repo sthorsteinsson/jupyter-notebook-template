@@ -10,7 +10,38 @@ http://conda.pydata.org/docs/download.html
 
 http://jupyter.readthedocs.org/en/latest/install.html
 
-## Create a new notebook projet
+## Manuel Setup
+This setup describes the steps to manually configuring the pre-commit fitler to the notebooks in a repository. The filters strip the output from the notebooks to avoid merge conflicts.
+
+1. clone the repos "sthorsteinsson/jupyter-notebook-template" onto your computer. This repostitory contains all the files you need.
+
+`git clone https://github.com/sthorsteinsson/jupyter-notebook-template.git `
+
+2. Goto the repository where you want to apply the filter.
+
+`cd path/to/git_repos`
+
+3. copy the file "nbstripout.py" into the repository. This is the filter which strips the output from a .ipynb file.
+
+4. Next we want to configure git to run the filter on commits. This is done by adding the following lines to the local config file found in:
+
+`.git/config`
+
+`git config --local filter.nbstripout.clean absolute/path/to/nbstripout.py`
+
+`git config --local filter.nbstripout.smudge cat`
+
+`git config --local filter.nbstripout.required true`
+
+The first line points to the filter which is activated during commit. The second line can be used to reintroduce the output when pulling from remote repos. The last line ensures that the filter is always applied.
+
+5. The following step informs that only .ipynb files should go through the filter. copy the file "attributes" into the folder ".git/info/"
+
+6. The last step is to add the hook. A hook is called upon a certain event. In this case when we commit a notebook. copy the file pre-commit into the folder ".git/hooks/". The "pre-commit" file in ".git/hooks/" runs every time a commit is made.
+
+## Automatized method (Not finished)
+
+## Create a new notebook project
 This section describes the steps necessary to take in order to make a new notebook project
 
 1. Copy the setup folder "notebook\_files" into the git repository where you want your notebook e.g. "notebook\_example.ipynb".
