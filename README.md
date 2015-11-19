@@ -10,6 +10,15 @@ http://conda.pydata.org/docs/download.html
 
 http://jupyter.readthedocs.org/en/latest/install.html
 
+## Guides
+
+https://gist.github.com/minrk/6176788
+
+The one which works for me in Github
+
+https://github.com/kynan/nbstripout
+
+
 ## Manuel Setup
 This setup describes the steps to manually configuring the pre-commit fitler to the notebooks in a repository. The filters strip the output from the notebooks to avoid merge conflicts.
 
